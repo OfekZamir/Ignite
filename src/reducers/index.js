@@ -1,21 +1,10 @@
 import { combineReducers } from "redux";
 import gamesReducer from "./gameReducer";
-
-const initState = {
-  name: "",
-  isLOgged: false,
-};
-
-const userReducer = (state, action) => {
-  switch (action.type) {
-    default:
-      return { ...state };
-  }
-};
+import detailReducer from "./detailReducer";
 
 const rootReducer = combineReducers({
   games: gamesReducer,
-  user: userReducer,
+  detail: detailReducer,
 });
 
 export default rootReducer;

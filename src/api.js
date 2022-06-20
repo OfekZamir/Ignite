@@ -34,6 +34,11 @@ export const popularGamesURL = () => `${base_url}${popular_games}`;
 export const upcomming_gamesURL = () => `${base_url}${upcomming_games}`;
 export const newGamesURL = () => `${base_url}${newGames}`;
 
+//Game Details
+export const gameDetailsURL = (game_id) => `${base_url}games/${game_id}?${key}`;
+export const gameScreenshotsURL = (game_id) =>
+  `${base_url}games/${game_id}/screenshots?${key}`;
+
 console.log(popularGamesURL());
 console.log(newGamesURL());
 console.log(upcomming_gamesURL());
