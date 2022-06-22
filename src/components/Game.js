@@ -16,13 +16,16 @@ const Game = ({ name, releaseDate, image, id }) => {
     document.body.style.overflow = "hidden";
     dispatch(loadDetail(id));
   };
-  console.log(typeof stringPathId);
   return (
-    <StyledGames layoutid={stringPathId} onClick={loadDetailHandler}>
+    <StyledGames layoutId={stringPathId} onClick={loadDetailHandler}>
       <Link to={`/game/${id}`}>
-        <h3>{name}</h3>
+        <motion.h3 layoutId={`title ${id}`}>{name}</motion.h3>
         <p>{releaseDate}</p>
-        <img src={smallImage(image, 640)} alt={name} />
+        <motion.img
+          layoutId={`image ${stringPathId}`}
+          src={smallImage(image, 640)}
+          alt={name}
+        />
       </Link>
     </StyledGames>
   );

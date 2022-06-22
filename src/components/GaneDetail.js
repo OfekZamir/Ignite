@@ -1,13 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { smallImage } from "../util";
+//Images
+import playstation from "../img/playstation.svg";
+import steam from "../img/steam.svg";
+import nintendo from "../img/nintendo.svg";
+import xbox from "../img/xbox.svg";
+import apple from "../img/apple.svg";
+import gamepad from "../img/gamepad.svg";
+
+//Star Images
+import starEmpty from "../img/star-empty.png";
+import starFull from "../img/star-full.png";
 
 const GameDetail = ({ pathId }) => {
+  const [platformList, setPlatformList] = useState();
   const navigate = useNavigate();
+
   //Exit Detail
   const exitDetailHandler = (e) => {
     const element = e.target;
@@ -16,29 +29,81 @@ const GameDetail = ({ pathId }) => {
       navigate("/");
     }
   };
-  console.log(typeof pathId);
+
   const { screen, game, isLoading } = useSelector((state) => state.detail);
+  //Get Stars
+  const getStars = () => {
+    const stars = [];
+    const rating = Math.floor(game.rating);
+    for (let i = 0; i < 5; i++) {
+      if (i <= rating) {
+        stars.push(<img alt="start" key={i} src={starFull} />);
+      } else {
+        stars.push(<img alt="start" key={i} src={starEmpty} />);
+      }
+    }
+    return stars;
+  };
+
+  //UniqueValues
+  function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
+  }
+  //Get distinct platforms
+  function distinctPlatforms() {
+    return game.platforms
+      .map((data) => data.platform.name.split(" ")[0])
+      .filter(onlyUnique)
+      .sort();
+  }
+  //Get platform images
+  const getPlatform = (platform) => {
+    switch (platform) {
+      case "PlayStation":
+        return playstation;
+      case "Xbox":
+        return xbox;
+      case "PC":
+        return steam;
+      case "Linux":
+        return steam;
+      case "Nintendo":
+        return nintendo;
+      case "Android":
+        return apple;
+      case "iOS":
+        return apple;
+      default:
+        return gamepad;
+    }
+  };
+
   return (
     <>
       {!isLoading && (
         <CardShadow className="shadow" onClick={exitDetailHandler}>
-          <Detail layoutid={pathId}>
+          <Detail layoutId={pathId}>
             <Stats>
               <div className="rating">
-                <h3>{game.name}</h3>
-                <p>Rating: {game.rating}</p>
+                <motion.h3 layoutId={`title ${pathId}`}>{game.name}</motion.h3>
+                <p>
+                  Rating:
+                  {game.rating}
+                </p>
+                <Stars>{getStars()}</Stars>
               </div>
               <Info>
                 <h3>Platforms</h3>
                 <Platforms>
-                  {game.platforms.map((data) => (
-                    <h3 key={data.platform.id}>{data.platform.name}</h3>
+                  {distinctPlatforms().map((data) => (
+                    <img key={data} src={getPlatform(data)} />
                   ))}
                 </Platforms>
               </Info>
             </Stats>
             <Media>
-              <img
+              <motion.img
+                layoutId={`image ${pathId}`}
                 src={smallImage(game.background_image, 1280)}
                 alt={game.background_image}
               />
@@ -70,6 +135,7 @@ const CardShadow = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 10;
   &::-webkit-scrollbar {
     width: 0.5rem;
   }
@@ -97,19 +163,16 @@ const Stats = styled(motion.div)`
   align-items: center;
   justify-content: space-between;
 `;
-
 const Info = styled(motion.div)`
   text-align: center;
 `;
-
 const Platforms = styled(motion.div)`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   img {
-    margin-left: 3rem;
+    margin: 0rem 1rem;
   }
 `;
-
 const Media = styled(motion.div)`
   margin-top: 5rem;
   img {
@@ -117,8 +180,16 @@ const Media = styled(motion.div)`
     object-fit: cover;
   }
 `;
-
 const Description = styled(motion.div)`
   margin: 5rem 0rem;
+`;
+
+const Stars = styled.div`
+  padding-top: 1rem;
+  img {
+    width: 1rem;
+    height: 1rem;
+    display: inline;
+  }
 `;
 export default GameDetail;
