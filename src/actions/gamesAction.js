@@ -12,7 +12,6 @@ export const loadGames = () => async (dispatch) => {
   // const popularData = await axios.get("../json/popular.json");
   // const UpcommingData = await axios.get("../json/upcoming.json");
   // const newGamessData = await axios.get("../json/newGames.json");
-  console.log(newGamessData);
 
   dispatch({
     type: "FETCH_GAMES",

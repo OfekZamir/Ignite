@@ -38,7 +38,3 @@ export const newGamesURL = () => `${base_url}${newGames}`;
 export const gameDetailsURL = (game_id) => `${base_url}games/${game_id}?${key}`;
 export const gameScreenshotsURL = (game_id) =>
   `${base_url}games/${game_id}/screenshots?${key}`;
-
-console.log(popularGamesURL());
-console.log(newGamesURL());
-console.log(upcomming_gamesURL());
