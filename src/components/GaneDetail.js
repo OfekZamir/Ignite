@@ -12,6 +12,7 @@ import nintendo from "../img/nintendo.svg";
 import xbox from "../img/xbox.svg";
 import apple from "../img/apple.svg";
 import gamepad from "../img/gamepad.svg";
+import linux from "../img/linux.svg";
 
 //Star Images
 import starEmpty from "../img/star-empty.png";
@@ -47,10 +48,17 @@ const GameDetail = ({ pathId }) => {
 
   //UniqueValues
   function onlyUnique(value, index, self) {
+    console.log(self.indexOf(value) === index);
     return self.indexOf(value) === index;
   }
   //Get distinct platforms
   function distinctPlatforms() {
+    console.log(
+      game.platforms
+        .map((data) => data.platform.name.split(" ")[0])
+        .filter(onlyUnique)
+        .sort()
+    );
     return game.platforms
       .map((data) => data.platform.name.split(" ")[0])
       .filter(onlyUnique)
@@ -65,18 +73,21 @@ const GameDetail = ({ pathId }) => {
         return xbox;
       case "PC":
         return steam;
-      case "Linux":
-        return steam;
       case "Nintendo":
         return nintendo;
       case "Android":
         return apple;
       case "iOS":
         return apple;
+      case "macOS":
+        return apple;
+      case "Linux":
+        return linux;
       default:
         return gamepad;
     }
   };
+  console.log(apple);
 
   return (
     <>
@@ -171,6 +182,10 @@ const Platforms = styled(motion.div)`
   justify-content: space-between;
   img {
     margin: 0rem 1rem;
+    width: 3rem;
+    svg path {
+      fill: red;
+    }
   }
 `;
 const Media = styled(motion.div)`
