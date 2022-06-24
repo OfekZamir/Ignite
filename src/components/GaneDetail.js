@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import styled from "styled-components";
 import { motion } from "framer-motion";
@@ -19,7 +19,6 @@ import starEmpty from "../img/star-empty.png";
 import starFull from "../img/star-full.png";
 
 const GameDetail = ({ pathId }) => {
-  const [platformList, setPlatformList] = useState();
   const navigate = useNavigate();
 
   //Exit Detail
@@ -48,17 +47,10 @@ const GameDetail = ({ pathId }) => {
 
   //UniqueValues
   function onlyUnique(value, index, self) {
-    console.log(self.indexOf(value) === index);
     return self.indexOf(value) === index;
   }
   //Get distinct platforms
   function distinctPlatforms() {
-    console.log(
-      game.platforms
-        .map((data) => data.platform.name.split(" ")[0])
-        .filter(onlyUnique)
-        .sort()
-    );
     return game.platforms
       .map((data) => data.platform.name.split(" ")[0])
       .filter(onlyUnique)
@@ -87,7 +79,6 @@ const GameDetail = ({ pathId }) => {
         return gamepad;
     }
   };
-  console.log(apple);
 
   return (
     <>
@@ -107,7 +98,7 @@ const GameDetail = ({ pathId }) => {
                 <h3>Platforms</h3>
                 <Platforms>
                   {distinctPlatforms().map((data) => (
-                    <img key={data} src={getPlatform(data)} />
+                    <img key={data} src={getPlatform(data)} alt={data} />
                   ))}
                 </Platforms>
               </Info>

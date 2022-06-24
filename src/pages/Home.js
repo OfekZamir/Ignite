@@ -9,6 +9,7 @@ import { useLocation } from "react-router-dom";
 
 //Components
 import Game from "../components/Game";
+import { fadeIn } from "../animation";
 
 export const Home = () => {
   const location = useLocation();
@@ -18,12 +19,14 @@ export const Home = () => {
   useEffect(() => {
     dispatch(loadGames());
   }, []);
+
   const { popular, upcoming, newGames, searched } = useSelector(
     (state) => state.games
   );
+
   return (
     <div>
-      <GameList>
+      <GameList variants={fadeIn} initial="hidden" animate="show">
         <AnimatePresence>
           {pathId && <GameDetail pathId={pathId} />}
         </AnimatePresence>
