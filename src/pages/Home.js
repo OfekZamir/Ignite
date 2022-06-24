@@ -18,7 +18,7 @@ export const Home = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadGames());
-  }, []);
+  }, [dispatch]);
 
   const { popular, upcoming, newGames, searched } = useSelector(
     (state) => state.games
