@@ -99,6 +99,9 @@ const GameList = styled(motion.div)`
     text-align: center;
     text-decoration: underline;
   }
+  @media only screen and (max-width: 600px) {
+    font-size: 10px;
+  }
 `;
 const Games = styled(motion.div)`
   min-height: 80vh;

@@ -6,6 +6,7 @@ const GlobalStyles = createGlobalStyle`
         padding:0 ;
         box-sizing:  border-box;
     }
+
     html{
         &::-webkit-scrollbar{
             width: 0.5rem ;
@@ -30,7 +31,7 @@ const GlobalStyles = createGlobalStyle`
     }
     p{
         font-size: 1.2rem;
-        line-height: 200%normal;
+        line-height: 200% normal;
         color: #696969
     }
     a{
@@ -43,6 +44,15 @@ const GlobalStyles = createGlobalStyle`
     input{
         font-family: "Montserrat", sans-serif;
     }
+          @media(max-width: 800px) {
+        h3{
+            
+        font-size: 1rem;
+        }
+            p{
+        font-size: 1rem;
+    }
+  }
 `;
 
 export default GlobalStyles;

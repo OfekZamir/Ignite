@@ -159,6 +159,11 @@ const Detail = styled(motion.div)`
   img {
     width: 100%;
   }
+  @media only screen and (max-width: 600px) {
+    min-height: 100vh;
+    padding: 0.5rem;
+    width: 40vh;
+  }
 `;
 const Stats = styled(motion.div)`
   display: flex;
