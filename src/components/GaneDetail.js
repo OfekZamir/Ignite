@@ -160,9 +160,9 @@ const Detail = styled(motion.div)`
     width: 100%;
   }
   @media only screen and (max-width: 600px) {
-    min-height: 100vh;
+    min-height: 100%;
     padding: 0.5rem;
-    width: 40vh;
+    width: 80%;
   }
 `;
 const Stats = styled(motion.div)`

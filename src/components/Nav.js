@@ -27,12 +27,14 @@ const Nav = () => {
         <img src={logo} alt="logo" />
         <h1>Ignite</h1>
       </Logo>
-      <form className="search">
-        <input value={textInput} onChange={inputHandler} type="text" />
-        <button onClick={submitSearch} type="submit">
-          Search
-        </button>
-      </form>
+      <SearchDiv>
+        <form className="search">
+          <input value={textInput} onChange={inputHandler} type="text" />
+          <button onClick={submitSearch} type="submit">
+            Search
+          </button>
+        </form>
+      </SearchDiv>
     </Stylednav>
   );
 };
@@ -66,6 +68,13 @@ const Logo = styled(motion.div)`
   img {
     height: 2rem;
     width: 2rem;
+  }
+`;
+const SearchDiv = styled(motion.div)`
+  @media only screen and (max-width: 600px) {
+    input {
+      width: 50%;
+    }
   }
 `;
 
