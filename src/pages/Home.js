@@ -108,6 +108,15 @@ const GameList = styled(motion.div)`
       text-align: center;
     }
   }
+  @media only screen and (max-width: 400px) {
+    width: 100%;
+    font-size: 10px;
+    padding: 0rem 2rem;
+    h2 {
+      font-size: 1.5rem;
+      text-align: center;
+    }
+  }
 `;
 const Games = styled(motion.div)`
   min-height: 80vh;

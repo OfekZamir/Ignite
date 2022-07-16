@@ -182,6 +182,10 @@ const Platforms = styled(motion.div)`
     svg path {
       fill: red;
     }
+    @media only screen and (max-width: 600px) {
+      width: 1rem;
+      margin: 0;
+    }
   }
 `;
 const Media = styled(motion.div)`
